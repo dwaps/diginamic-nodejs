@@ -1,0 +1,36 @@
+// findAll
+GET http://localhost:3000/api/todos
+
+###
+
+// findById
+GET http://localhost:3000/api/todos/448d
+
+###
+
+// save
+POST http://localhost:3000/api/todos
+Content-Type: application/json
+
+{
+  "title": "Rangement vaisselle",
+  "description": "Ranger la vaisselle",
+  "done": false
+}
+
+###
+
+// remove
+DELETE http://localhost:3000/api/todos/448d
+
+###
+
+// update
+PATCH http://localhost:3000/api/todos/448d
+Content-Type: application/json
+
+{
+  "id": "448d",
+  "todo": "Yeah",
+  "completed": false
+}
