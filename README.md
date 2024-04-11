@@ -1,8 +1,5 @@
-**Remarque:** Les tests sont lancés automatiquement après l'installation avec `npm i`.
-
-# Comment lancer un test
-
-npx jest -t <file>
-
-example:
-npx jest -t exercices/2_InputArgs.js
+```txt
+npm i > install dependances
+npm start > start server on port 3000
+PORT=8080 npm start > start server on port 8080
+```
