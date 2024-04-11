@@ -4,7 +4,7 @@ GET http://localhost:3000/api/todos
 ###
 
 // findById
-GET http://localhost:3000/api/todos/448d
+GET http://localhost:3000/api/todos/2
 
 ###
 
@@ -13,9 +13,8 @@ POST http://localhost:3000/api/todos
 Content-Type: application/json
 
 {
-  "title": "Rangement vaisselle",
-  "description": "Ranger la vaisselle",
-  "done": false
+  "title": "Rangement",
+  "description": "Ranger la vaisselle"
 }
 
 ###
@@ -30,7 +29,7 @@ PATCH http://localhost:3000/api/todos/448d
 Content-Type: application/json
 
 {
-  "id": "448d",
-  "todo": "Yeah",
-  "completed": false
+  "id": "3",
+  "todo": "Ranger TOUTE la vaisselle",
+  "done": true
 }

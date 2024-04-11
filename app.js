@@ -4,6 +4,7 @@ const express = require("express");
 const router = require("./routing");
 const app = express();
 const db = require("./db");
+
 db.sync()
   .then(() => {
     console.log("Database synced");
