@@ -1,0 +1,21 @@
+{
+  "name": "test_mouli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "postinstall": "npm test",
+    "test": "jest && mv test-report.html index.html && vite --open"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "jest": "^29.3.1",
+    "jest-html-reporter": "^3.7.0",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.8.0",
+    "shelljs": "^0.8.5",
+    "vite": "^5.2.8"
+  }
+}
