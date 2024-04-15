@@ -2,9 +2,31 @@
 
 const http = require("http");
 const app = require("../app");
+const open = require("open");
+const { existsSync, writeFileSync } = require("fs");
 
 const { port } = require(`../env/env.${process.env.NODE_ENV}`);
 
 const server = http.createServer(app);
 
-server.listen(port, () => console.log(`Listening on port ${port}.`));
+server.listen(port, () => {
+  console.log(`Listening on port ${port}.`);
+
+  if (process.env.NODE_ENV && process.env.NODE_ENV === "development") {
+    // @ts-ignore
+    require("socket.io")(server).on("connection", (socket) => {
+      require("fs").watch("views", { recursive: true }, () =>
+        socket.emit("message")
+      );
+      require("fs").watch("public", { recursive: true }, () =>
+        socket.emit("message")
+      );
+    });
+
+    if (open && !existsSync("browser-opened")) {
+      console.log("Openning default browser...");
+      open(`http://localhost:${port}`);
+      writeFileSync("browser-opened", "");
+    }
+  }
+});

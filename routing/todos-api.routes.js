@@ -1,12 +1,15 @@
 // @ts-check
 
-const { findAll, findById, save, remove, update } = require("../controllers");
+const {
+  apiTodosCtrl: { findAll, findById, remove, save, update },
+} = require("../controllers");
+const { loadImage } = require("../middlewares");
 
 const router = require("express").Router();
 
 router.get("", findAll);
 router.get("/:id", findById);
-router.post("", save);
+router.post("", loadImage, save);
 router.delete("/:id", remove);
 router.patch("/:id", update);
 

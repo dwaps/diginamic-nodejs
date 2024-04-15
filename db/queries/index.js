@@ -1,7 +1,7 @@
 const Todo = require("../models/todo");
 
 module.exports.findAll = async (todo) => {
-  return await Todo.find();
+  return (await Todo.find()).reverse();
 };
 
 module.exports.findById = async (todoId) => {
