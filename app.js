@@ -3,15 +3,7 @@
 const express = require("express");
 const router = require("./routing");
 const app = express();
-const db = require("./db");
-
-db.sync()
-  .then(() => {
-    console.log("Database synced");
-  })
-  .catch((err) => {
-    console.error("Error syncing database:", err);
-  });
+require("./db");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

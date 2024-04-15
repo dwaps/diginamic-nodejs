@@ -1,10 +1,17 @@
 // @ts-check
 
-const { Sequelize } = require("sequelize");
+const mongoose = require("mongoose");
+const { urlDB } = require(`../env/env.${process.env.NODE_ENV}`);
 
-const db = new Sequelize({
-  dialect: "sqlite",
-  storage: "db/data.sqlite",
-});
-
-module.exports = db;
+mongoose
+  .connect(urlDB, {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("DB CONNECTED !");
+  })
+  .catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+  });

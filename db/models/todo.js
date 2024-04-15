@@ -1,36 +1,28 @@
 // @ts-check
 
-const { DataTypes, Sequelize } = require("sequelize");
-const db = require("../");
+const { Schema, model, default: mongoose } = require("mongoose");
 
-const Todo = db.define("Todo", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
+const TodoSchema = new Schema({
   title: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true,
   },
   description: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true,
   },
   createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Date,
+    default: Date.now(),
   },
   doneAt: {
-    type: DataTypes.DATE,
-    allowNull: true,
+    type: Date,
+    default: null,
   },
   done: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
+    type: Boolean,
+    default: false,
   },
 });
 
-module.exports = Todo;
+module.exports = model("Todo", TodoSchema);

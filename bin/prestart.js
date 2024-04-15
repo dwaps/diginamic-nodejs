@@ -9,6 +9,7 @@ const envFileProdPath = resolve("env", "env.production.js");
 const code = `module.exports = {
   port: 3000,
   urlApi: "http://localhost:9898",
+  urlDB: "DB_URL"
 };`;
 
 if (!existsSync(envFileDevPath) && !existsSync(envFileProdPath)) {
