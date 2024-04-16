@@ -1,0 +1,9 @@
+node_modules
+
+# server
+server/env/*
+!server/env/.gitkeep
+server/public/assets/images/*
+!server/public/assets/images/default*
+
+# client

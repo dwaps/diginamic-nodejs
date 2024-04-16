@@ -1,0 +1,18 @@
+.flash-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 0.7rem;
+}
+
+.flash-message.success {
+  background: #9dff9d54;
+}
+
+.flash-message.error {
+  background: #ff8686a6;
+}

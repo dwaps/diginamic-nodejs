@@ -1,0 +1,15 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script src="/static/js/index.js" defer></script>
+  <% if (process.env.NODE_ENV === "development") { %>
+  <title>DEV MODE - Liste de tâches</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    io().on("message", () => location.reload());
+  </script>
+  <% } else { %>
+  <title>Liste de tâches</title>
+  <% } %>
+</head>

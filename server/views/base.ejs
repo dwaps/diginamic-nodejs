@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <%- include('includes/head.ejs') %>
+  <body>
+    <% if (typeof fm !== 'undefined') { %>
+    <div class="flash-message <%= fm.type %>"><%= fm.mss %></div>
+    <% } %>
+    <!--  -->
+    <%- include('includes/todos') %>
+  </body>
+</html>
