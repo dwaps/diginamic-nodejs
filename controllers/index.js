@@ -4,7 +4,8 @@ module.exports.getScoreCtrl = (req, res) => {
   if (req.method.toLowerCase() === "get") {
     res.status(200).json(req.jsonGameDescription);
   } else {
-    res.end("get score en POST");
+    const { win, lose, tie } = req.params;
+    res.status(200).json({ win, lose, tie });
   }
 };
 

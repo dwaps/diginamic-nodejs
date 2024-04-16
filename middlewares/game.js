@@ -35,8 +35,6 @@ module.exports.playGame = (req, res, next) => {
     resultJson.serverScore++;
   }
 
-  console.log(resultJson);
-
   next();
 };
 
