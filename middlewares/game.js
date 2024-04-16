@@ -1,8 +1,7 @@
 // @ts-check
 
-const resultJson = require("../utils/result.json");
-
-const GAME_KEY = "score";
+const { getGameFromDB, updateGame } = require("../db/queries");
+const Game = require("../db/models/game");
 
 const options = new Map([
   ["rock", "PIERRE"],
@@ -10,35 +9,44 @@ const options = new Map([
   ["scissors", "CISEAUX"],
 ]);
 
-module.exports.playGame = (req, res, next) => {
+module.exports.playGame = async (req, res, next) => {
   const values = Array.from(options.values());
-
   req.gameOfUser = options.get(req.params.action);
   req.gameOfServer = values[Math.floor(Math.random() * values.length)];
 
-  if (req.gameOfUser === req.gameOfServer) {
-    req.resultOfGame = "le même jeu que le serveur...";
-    resultJson.tie++;
-  } else if (
-    (req.gameOfUser === "PIERRE" && req.gameOfServer === "CISEAUX") ||
-    (req.gameOfUser === "FEUILLE" && req.gameOfServer === "PIERRE") ||
-    (req.gameOfUser === "CISEAUX" && req.gameOfServer === "FEUILLE")
-  ) {
-    req.resultOfGame = "GAGNE !!!";
-    resultJson.lose = "server";
-    resultJson.win = "user";
-    resultJson.userScore++;
-  } else {
-    req.resultOfGame = "PERDU :(";
-    resultJson.lose = "user";
-    resultJson.win = "server";
-    resultJson.serverScore++;
+  const game = await getGameFromDB();
+
+  if (game) {
+    if (req.gameOfUser === req.gameOfServer) {
+      req.resultOfGame = "le même jeu que le serveur...";
+      game.tie++;
+    } else if (
+      (req.gameOfUser === "PIERRE" && req.gameOfServer === "CISEAUX") ||
+      (req.gameOfUser === "FEUILLE" && req.gameOfServer === "PIERRE") ||
+      (req.gameOfUser === "CISEAUX" && req.gameOfServer === "FEUILLE")
+    ) {
+      req.resultOfGame = "GAGNE !!!";
+      game.lose = "server";
+      game.win = "user";
+      game.userScore++;
+    } else {
+      req.resultOfGame = "PERDU :(";
+      game.lose = "user";
+      game.win = "server";
+      game.serverScore++;
+    }
+  }
+
+  try {
+    await updateGame(game);
+  } catch (e) {
+    return res.status(500).josn({ error: "game not updated" });
   }
 
   next();
 };
 
-module.exports.scoreOfGame = (req, res, next) => {
-  req.jsonGameDescription = resultJson;
+module.exports.scoreOfGame = async (req, res, next) => {
+  req.jsonGameDescription = await getGameFromDB();
   next();
 };
