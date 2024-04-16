@@ -5,6 +5,8 @@ npm start > start in prod mode (port 80)
 npm run dev AND npm run api > start in dev mode (port 3000)
 ```
 
+**Remarque:** Sur les branches précédentes, j'ai commis une erreur par rapport à la convention de nommage du point d'entrée pour un projet Express. J'avai créé un dossier `bin/` dans lequel j'ai placé un fichier `www`. J'ai inversé les noms ! 🫢
+
 ### Utilisation
 
 En mode dev (`npm run dev`):

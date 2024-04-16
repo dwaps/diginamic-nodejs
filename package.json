@@ -11,9 +11,9 @@
     "start": "cross-env NODE_ENV=production npm-run-all \"start:*\"",
     "dev": "cross-env NODE_ENV=development npm-run-all \"dev:*\"",
     "start:script": "npm exec prestart",
-    "start:server": "node www/bin",
+    "start:server": "node bin/www",
     "dev:script": "npm exec prestart",
-    "dev:server": "nodemon -e js www/bin"
+    "dev:server": "nodemon -e js bin/www"
   },
   "keywords": [],
   "author": "",
