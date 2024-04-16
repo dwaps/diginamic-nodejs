@@ -1,15 +1,11 @@
 // @ts-check
 
 module.exports.getScoreCtrl = (req, res) => {
-  // res.status(200).json({
-  //   win: 100,
-  //   lose: 5,
-  //   tie: 0,
-  // });
-  res.send(
-    `Vous avez joué ${req.params.action}.`
-    // `Vous avez joué ${req.params.action}, le serveur a joué ${actionServer}. Vous avez ${result}.`
-  );
+  if (req.method.toLowerCase() === "get") {
+    res.status(200).json(req.jsonGameDescription);
+  } else {
+    res.end("get score en POST");
+  }
 };
 
 module.exports.playCtrl = (req, res) => {

@@ -10,7 +10,7 @@ const options = new Map([
   ["scissors", "CISEAUX"],
 ]);
 
-module.exports.game = (req, res, next) => {
+module.exports.playGame = (req, res, next) => {
   const values = Array.from(options.values());
 
   req.gameOfUser = options.get(req.params.action);
@@ -37,5 +37,10 @@ module.exports.game = (req, res, next) => {
 
   console.log(resultJson);
 
+  next();
+};
+
+module.exports.scoreOfGame = (req, res, next) => {
+  req.jsonGameDescription = resultJson;
   next();
 };
