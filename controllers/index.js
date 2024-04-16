@@ -16,9 +16,7 @@ module.exports.playCtrl = (req, res) => {
 };
 
 module.exports.restartCtrl = (req, res) => {
-  res.status(200).json({
-    win: 100,
-    lose: 5,
-    tie: 0,
-  });
+  const resultJson = require("../utils/result.json");
+  Object.keys(resultJson).forEach((k) => (resultJson[k] = ""));
+  res.status(200).json(resultJson);
 };

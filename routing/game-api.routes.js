@@ -7,6 +7,6 @@ const { playGame, scoreOfGame } = require("../middlewares/game");
 router.get("/score", scoreOfGame, getScoreCtrl);
 router.get("/play/:action", playGame, playCtrl);
 router.put("/score/:win/:lose/:tie", getScoreCtrl);
-router.post("/score/restart", restartCtrl);
+router.post("/restart", restartCtrl);
 
 module.exports = router;
