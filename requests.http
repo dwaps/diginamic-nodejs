@@ -1,39 +1,13 @@
-# 4 routes
-# GET pierre / papier / ciseaux
-# GET Score
-# POST remettre à zéro
-
-
-GET localhost:3000/game/score
-# {
-#     "win": 100,
-#     "lose": 5,
-#     "tie": 0
-# }
+GET https://localhost:9999/game/score
 
 ###
 
-GET localhost:3000/game/play/rock
-# GET /game/play/(pierre | feuille | ciseaux) 
-# Vous avez joué :action, le serveur a joué :action_serv vous avez fait :result
+GET https://localhost:9999/game/play/rock
 
 ###
 
-PUT localhost:3000/game/score/:win/:lose/:tie
-Content-Type: application/json
-# PUT /game/score/:wins/:loses/:ties
-
-{
-  "win": "win",
-  "lose": "lose",
-  "tie": "tie"
-}
+PUT https://localhost:9999/game/score/user/server/7
 
 ###
 
-POST localhost:3000/game/restart
-# {
-#   "win": 0,
-#   "lose": 0,
-#   "tie": 0
-# }
+POST https://localhost:9999/game/restart

@@ -1,5 +1,7 @@
 // @ts-check
 
+const { resetGame } = require("../db/queries");
+
 module.exports.getScoreCtrl = (req, res) => {
   if (req.method.toLowerCase() === "get") {
     res.status(200).json(req.jsonGameDescription);
@@ -11,12 +13,17 @@ module.exports.getScoreCtrl = (req, res) => {
 
 module.exports.playCtrl = (req, res) => {
   res.send(
-    `Vous avez joué ${req.gameOfUser}, le serveur a joué ${req.gameOfServer}. Vous avez ${req.resultOfGame}.`
+    `Vous avez joué ${req.gameOfUser ?? req.params.action}, le serveur a joué ${
+      req.gameOfServer ?? "PIERRE"
+    }. Vous avez ${req.resultOfGame ?? "🫢"}.`
   );
 };
 
 module.exports.restartCtrl = (req, res) => {
-  const resultJson = require("../utils/result.json");
-  Object.keys(resultJson).forEach((k) => (resultJson[k] = ""));
-  res.status(200).json(resultJson);
+  try {
+    resetGame();
+    res.status(200).json({ message: "Le jeu a été remis à zéro" });
+  } catch (e) {
+    res.status(500).json({ error: "Le jeu n'a pas pu être remis à zéro" });
+  }
 };

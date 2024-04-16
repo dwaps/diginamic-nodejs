@@ -22,14 +22,20 @@ module.exports.getGameFromDB = async () => {
   return await Game.findOne();
 };
 
-module.exports.createOrUpdateGame = async (game) => {
-  let existed;
+module.exports.resetGame = async () => {
   try {
-    existed = await this.getGameFromDB();
-    if (!existed) {
-      existed = await createGame();
-    }
-    this.findByIdAndUpdate(game);
+    const game = await Game.findOne();
+    return await Game.findByIdAndUpdate(
+      game.id,
+      {
+        win: "",
+        lose: "",
+        userScore: 0,
+        serverScore: 0,
+        tie: 0,
+      },
+      { new: false }
+    );
   } catch (e) {
     console.error(e);
   }
